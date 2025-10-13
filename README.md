@@ -1,2 +1,2 @@
 # guiTicTacToe
-A simple python game of TicTacToe with a guy
+A simple Python game of TicTacToe with a gui
