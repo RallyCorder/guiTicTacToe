@@ -1,80 +1,66 @@
-class Player:
-    def __init__(self,name,symbol):
-        self.name=name
-        self.symbol=symbol
-        
+class Joueur :
+    def __init__(self, nom, symbole):
+        self.nom = nom
+        self.symbole = symbole
+
     def __str__(self):
-        printout=str(self.name) + ", " + str(self.symbol)
-        return printout
+        return self.nom + ":"+ self.symbole
 
-#Me=Player("John","X")
-#print(Me)
+class Case:
 
-class Box:
-    def __init__(self,position,value):
+    def __init__(self,position,valeur):
         self.position=position
-        self.value=value
+        self.valeur=valeur
 
     def __str__(self):
-        if self.value == None:
-            return " "
+        if self.valeur!= None:
+            return self.valeur
         else:
-            return self.value
-
-#Cell=Box(9,"X")
-#print(Cell)
-#a = Box((1,1), "X")
-
-class Grid:
-    def __init__(self,table):
-        self.table=tab
-        self.box_list = []
-        for i in range(3):
-            tab = []
-            for j in range(3):
-                tab.append(Box((i,j), None))
-            self.box_list.append(tab)
-        self.grid=Grid(self.box_list)
-    def BoxCheck(self, box):
-        if box.value == None:
-            return None
-        else:
-            return box.value
-
-    def BoxChange(self, box, newvalue):
-        if self.BoxCheck(box) == None:
-            box.value = newvalue
-
-    def WinnerCheck(self):
-        for i in range(3):
-            if self.table[i][0].value == self.table[i][1].value == self.table[i][2].value and self.table[i][0] != None:
-                return self.table[i][0].value + "is a Winner"
-        for i in range(3):
-            if self.table[0][i].value == self.table[1][i].value == self.table[2][i].value and self.table[0][i] != None:
-                return self.table[0][i].value + "is a Winner"
-        if self.table[0][0].value == self.table[1][1].value == self.table[2][2].value and self.table[0][0] != None:
-                return self.table[0][0].value + "is a Winner"
-        if self.table[0][2].value == self.table[1][1].value == self.table[2][0].value and self.table[0][0] != None:
-                return self.table[0][0].value + "is a Winner"
+            return str(self.position)
 
     def __str__(self):
-        printout = ""
-        for i in range(3):
-            printout += "|"
-            for j in range(3):
-                printout += str(self.table[i][j])+"|"
-            printout += "\n"
-        if Box.value==None:
-            Box.value=="  "
-        printout="|" + Box.value(Box.position[0]) + "|" + Box.value(Box.position[1]) + "|" + Box.value(Box.position[2]) + "\n"
-        printout+="|" + Box.value(Box.position[3]) + "|" + Box.value(Box.position[4]) + "|" + Box.value(Box.position[5]) + "\n"
-        printout+="|" + Box.value(Box.position[6]) + "|" + Box.value(Box.position[7]) + "|" + Box.value(Box.position[8]) + "\n"
-        return printout
+        if self.valeur!= None:
+            return str(self.valeur)
+        else:
+            return str(self.position)
 
 
-#wincheck=Grid("Boris")
-#boxes=Box([0,1,2,3,4,5,6,7,8],"X")
-#print(wincheck.WinnerCheck("X"))
+
+class Grille:
+
+    def __init__(self):
+        self.grille= [Case(0,None),Case(1,None),Case(2,None),Case(3,None),Case(4,None),Case(5,None),Case(6,None),Case(7,None),Case(8,None)]
+
+    def estVide(self,pos):
+        return self.grille[pos].valeur==None
+
+    def joue(self,pos):
+        self.grille[pos].valeur= Player.symbole
+
+
+    def __str__(self):
+        text=""
+        for j in range(0,9,3):
+            text+="|"
+            for i in range (0,3):
+                if self.estVide(j+i):
+                    a=" "
+                else:
+                    a= self.grille[j+i]
+                text+=str(a)+"|"
+            text+="\n"
+
+        return text
+
+def jeu_entier(self):
+        while gagnant == None or egalite :
+            self.tours()
+        if gagnant :
+            print(f"Bravo ! {joueurActuel}, vous avez gagné ! ")
+        elif egalite :
+            print("Egalite !")
+        else :
+            self.joueur_suivant()
 
 class HideoGame:
     def __init__(self,players,current_p,rounds):
