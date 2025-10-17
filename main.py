@@ -2,7 +2,10 @@ class Player:
     def __init__(self,name,symbol):
         self.name=name
         self.symbol=symbol
+<<<<<<< HEAD
         
+=======
+>>>>>>> 930d4ee56e4ef066e688694063d199b7a699d0c6
     def __str__(self):
         printout=str(self.name) + ", " + str(self.symbol)
         return printout
@@ -14,7 +17,10 @@ class Box:
     def __init__(self,position,value):
         self.position=position
         self.value=value
+<<<<<<< HEAD
 
+=======
+>>>>>>> 930d4ee56e4ef066e688694063d199b7a699d0c6
     def __str__(self):
         if self.value == None:
             return " "
@@ -28,17 +34,26 @@ class Box:
 class Grid:
     def __init__(self,table):
         self.table=table
+<<<<<<< HEAD
 
+=======
+>>>>>>> 930d4ee56e4ef066e688694063d199b7a699d0c6
     def BoxCheck(self, box):
         if box.value == None:
             return None
         else:
             return box.value
+<<<<<<< HEAD
 
     def BoxChange(self, box, newvalue):
         if self.BoxCheck(box) == None:
             box.value = newvalue
 
+=======
+    def BoxChange(self, box, newvalue):
+        if self.BoxCheck(box) == None:
+            box.value = newvalue
+>>>>>>> 930d4ee56e4ef066e688694063d199b7a699d0c6
     def WinnerCheck(self):
         for i in range(3):
             if self.table[i][0].value == self.table[i][1].value == self.table[i][2].value and self.table[i][0] != None:
@@ -58,6 +73,11 @@ class Grid:
             for j in range(3):
                 printout += str(self.table[i][j])+"|"
             printout += "\n"
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 930d4ee56e4ef066e688694063d199b7a699d0c6
         if Box.value==None:
             Box.value=="  "
         printout="|" + Box.value(Box.position[0]) + "|" + Box.value(Box.position[1]) + "|" + Box.value(Box.position[2]) + "\n"
@@ -85,14 +105,20 @@ class HideoGame:
 
         self.current_p=current_p
         self.rounds=rounds
+<<<<<<< HEAD
 
+=======
+>>>>>>> 930d4ee56e4ef066e688694063d199b7a699d0c6
     def GameStart(self):
         self.player.name=input()
         self.player.symbol=input()
         
     def PlayerSymbol(self):
         return current_p(Player.symbol)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 930d4ee56e4ef066e688694063d199b7a699d0c6
     def SwitchPlayer(self,current_p):
         if current_p == 1:
             current_p == 0
