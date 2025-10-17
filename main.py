@@ -30,6 +30,17 @@ class Grille:
     def SymboleJoueur(self,position):
         self.grille[position].valeur=joueur_id.symbole
 
+    def WinnerCheck(self):
+        for i in range(3):
+            if self.grille[3*i].valeur == self.grille[3*i+1].valeur == self.grille[3*i+2].valeur != None:
+                gagnant = True
+            if self.grille[3*i].valeur == self.grille[3*i+3].valeur == self.grille[3*i+6].valeur != None:
+                gagnant=True
+        if self.grille[0].valeur == self.grille[4].valeur == self.grille[8].valeur != None:
+            gagnant=True
+        if self.grille[2].valeur == self.grille[4].valeur == self.grille[6].valeur != None:
+            gagnant=True
+
     def __str__(self):
         text=""
         for j in range(0,9,3):
@@ -77,7 +88,7 @@ class Jeu:
         joueur_valeur=0
         while gagnant==None or egalite:
             self.Round()
-        if gagnant:
+        if gagnant==True:
             print("Bravo !{joueur_valeur}, vous avez gagné !")
         elif egalite:
             print("Egalite !")
