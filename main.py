@@ -1,10 +1,11 @@
-class Joueur :
+class Joueur:
+
     def __init__(self, nom, symbole):
-        self.nom = nom
-        self.symbole = symbole
+        self.nom=nom
+        self.symbole=symbole
 
     def __str__(self):
-        return self.nom + ":"+ self.symbole
+        return self.nom + ":" + self.symbole
 
 class Case:
 
@@ -21,13 +22,13 @@ class Case:
 class Grille:
 
     def __init__(self):
-        self.grille= [Case(0,None),Case(1,None),Case(2,None),Case(3,None),Case(4,None),Case(5,None),Case(6,None),Case(7,None),Case(8,None)]
+        self.grille=[Case(0,None),Case(1,None),Case(2,None),Case(3,None),Case(4,None),Case(5,None),Case(6,None),Case(7,None),Case(8,None)]
 
     def estVide(self,pos):
         return self.grille[pos].valeur==None
 
     def joue(self,pos):
-        self.grille[pos].valeur= Player.symbole
+        self.grille[pos].valeur=Player.symbole
 
     def __str__(self):
         text=""
@@ -42,22 +43,23 @@ class Grille:
             text+="\n"
         return text
 
-class Jeu :
+class Jeu:
+
     def __init__(self):
-        self.listeJoueurs = listeJoueurs #a def dans le jeu
-        self.plateau = Grille()
-        self.joueurActuel = joueurActuel #same
-        self.compteur = 0
+        self.listeJoueurs=listeJoueurs #a def dans le jeu
+        self.plateau=Grille()
+        self.joueurActuel=joueurActuel #same
+        self.compteur=0
 
     def joueur_actuel(self):
-        Player= self.listeJoueurs[joueurActuel]
+        Player=self.listeJoueurs[joueurActuel]
         return Player
 
     def SwitchPlayer(self,joueurActuel):
-        if joueurActuel == 1:
-            joueurActuel = 0
-        if joueurActuel == 0:
-            joueurActuel = 1
+        if joueurActuel==1:
+            joueurActuel=0
+        if joueurActuel==0:
+            joueurActuel=1
 
     def tours(self):
         print(self.plateau)
@@ -73,21 +75,21 @@ class Jeu :
         J2=Joueur("Bris","O")
         listeJoueurs=[J1,J2]
         joueurActuel=0
-        while gagnant == None or egalite :
+        while gagnant==None or egalite:
             self.tours()
-        if gagnant :
-            print(f"Bravo ! {joueurActuel}, vous avez gagné ! ")
-        elif egalite :
+        if gagnant:
+            print("Bravo ! {joueurActuel}, vous avez gagné ! ")
+        elif egalite:
             print("Egalite !")
-        else :
+        else:
             self.joueur_suivant()
 
 def jeu_entier(self):
-        while gagnant == None or egalite :
+        while gagnant==None or egalite:
             self.tours()
-        if gagnant :
-            print(f"Bravo ! {joueurActuel}, vous avez gagné ! ")
-        elif egalite :
+        if gagnant:
+            print("Bravo ! {joueurActuel}, vous avez gagné ! ")
+        elif egalite:
             print("Egalite !")
-        else :
+        else:
             self.joueur_suivant()
