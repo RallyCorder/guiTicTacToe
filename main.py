@@ -27,8 +27,14 @@ class Box:
 
 class Grid:
     def __init__(self,table):
-        self.table=table
-
+        self.table=tab
+        self.box_list = []
+        for i in range(3):
+            tab = []
+            for j in range(3):
+                tab.append(Box((i,j), None))
+            self.box_list.append(tab)
+        self.grid=Grid(self.box_list)
     def BoxCheck(self, box):
         if box.value == None:
             return None
@@ -71,18 +77,8 @@ class Grid:
 #print(wincheck.WinnerCheck("X"))
 
 class HideoGame:
-    def __init__(self,players,grid,current_p,rounds):
-        self.players=Player()
-
-        self.box_list = []
-        for i in range(3):
-            tab = []
-            for j in range(3):
-                tab.append(Box((i,j), None))
-            self.box_list.append(tab)
-        self.grid=Grid(self.box_list)
-
-
+    def __init__(self,players,current_p,rounds):
+        self.players=Player
         self.current_p=current_p
         self.rounds=rounds
 
@@ -100,3 +96,13 @@ class HideoGame:
             current_p == 1
         else:
             return "Invalid"
+
+    def __str__(self):
+        printout=str(Grid())
+        return printout
+
+test=HideoGame(2,0,1)
+testp=Player("John","X")
+tab=[]
+testg=Grid(tab)
+print(test)
