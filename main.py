@@ -30,7 +30,7 @@ class Grille:
     def SymboleJoueur(self,position):
         self.grille[position].valeur=joueur_id.symbole
 
-    def WinnerCheck(self):
+    def VerifGagnant(self):
         for i in range(3):
             if self.grille[3*i].valeur == self.grille[3*i+1].valeur == self.grille[3*i+2].valeur != None:
                 gagnant = True
