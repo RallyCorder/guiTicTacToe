@@ -18,14 +18,6 @@ class Case:
         else:
             return str(self.position)
 
-    def __str__(self):
-        if self.valeur!= None:
-            return str(self.valeur)
-        else:
-            return str(self.position)
-
-
-
 class Grille:
 
     def __init__(self):
@@ -49,8 +41,47 @@ class Grille:
                     a= self.grille[j+i]
                 text+=str(a)+"|"
             text+="\n"
-
         return text
+
+class Jeu :
+    def __init__(self):
+        self.listeJoueurs = listeJoueurs #a def dans le jeu
+        self.plateau = Grille()
+        self.joueurActuel = joueurActuel #same
+        self.compteur = 0
+
+    def joueur_actuel(self):
+        Player= self.listeJoueurs[joueurActuel]
+        return Player
+
+    def SwitchPlayer(self,joueurActuel):
+        if joueurActuel == 1:
+            joueurActuel = 0
+        if joueurActuel == 0:
+            joueurActuel = 1
+
+    def tours(self):
+        print(self.plateau)
+        casechoisie = input("Ecrit un nombre entre 1 et 9")-1
+        while self.grille.estVide(casechoisie):
+            print("La case choisie est déjà prise, choisissez une autre case")
+            casechoisie = input("Ecrit un nombre entre 1 et 9")-1
+        self.joue(casechoisie)
+        self.compteur+=1
+
+    def jeu_entier(self):
+        J1=Joueur("Jean","X")
+        J2=Joueur("Bris","O")
+        listeJoueurs=[J1,J2]
+        joueurActuel=0
+        while gagnant == None or egalite :
+            self.tours()
+        if gagnant :
+            print(f"Bravo ! {joueurActuel}, vous avez gagné ! ")
+        elif egalite :
+            print("Egalite !")
+        else :
+            self.joueur_suivant()
 
 def jeu_entier(self):
         while gagnant == None or egalite :
@@ -61,34 +92,3 @@ def jeu_entier(self):
             print("Egalite !")
         else :
             self.joueur_suivant()
-
-class HideoGame:
-    def __init__(self,players,current_p,rounds):
-        self.players=Player
-        self.current_p=current_p
-        self.rounds=rounds
-
-    def GameStart(self):
-        self.player.name=input()
-        self.player.symbol=input()
-        
-    def PlayerSymbol(self):
-        return current_p(Player.symbol)
-
-    def SwitchPlayer(self,current_p):
-        if current_p == 1:
-            current_p == 0
-        if current_p == 0:
-            current_p == 1
-        else:
-            return "Invalid"
-
-    def __str__(self):
-        printout=str(Grid())
-        return printout
-
-test=HideoGame(2,0,1)
-testp=Player("John","X")
-tab=[]
-testg=Grid(tab)
-print(test)
