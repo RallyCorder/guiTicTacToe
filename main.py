@@ -29,7 +29,6 @@ class Grille:
     def joue(self,pos):
         self.grille[pos].valeur= Player.symbole
 
-
     def __str__(self):
         text=""
         for j in range(0,9,3):
