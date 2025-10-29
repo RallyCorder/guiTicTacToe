@@ -57,9 +57,9 @@ class Grille:
 class Jeu:
 
     def __init__(self):
-        self.liste_joueurs=liste_joueurs #a def dans le jeu
+        self.liste_joueurs=self.JeuEntier #a def dans le jeu
         self.plateau=Grille()
-        self.joueur_valeur=joueur_valeur #same
+        self.joueur_valeur=self.JeuEntier #same
         self.compteur=0
 
     def joueurActuel(self):
