@@ -1,11 +1,11 @@
-class Joueur:
 
+class Joueur :
     def __init__(self, nom, symbole):
-        self.nom=nom
-        self.symbole=symbole
+        self.nom = nom
+        self.symbole = symbole
 
     def __str__(self):
-        return self.nom + ":" + self.symbole
+        return self.nom + ": "+ self.symbole
 
 class Case:
 
@@ -19,27 +19,31 @@ class Case:
         else:
             return str(self.position)
 
+
 class Grille:
 
     def __init__(self):
-        self.grille=[Case(0,None),Case(1,None),Case(2,None),Case(3,None),Case(4,None),Case(5,None),Case(6,None),Case(7,None),Case(8,None)]
+        self.grille= [Case(0,None),Case(1,None),Case(2,None),Case(3,None),Case(4,None),Case(5,None),Case(6,None),Case(7,None),Case(8,None)]
 
-    def estVide(self,position):
-        return self.grille[position].valeur==None
+    def estVide(self,pos):
+        return self.grille[pos].valeur==None
 
-    def SymboleJoueur(self,position):
-        self.grille[position].valeur=joueur_id.symbole
+    def joue(self,pos,perso):
+        self.grille[pos].valeur= perso.symbole
 
-    def VerifGagnant(self):
+    def verif_victoire(self):
+        for i in range(0,9,3):
+            if self.grille[0+i].valeur == self.grille[1+i].valeur == self.grille[2+i].valeur and self.grille[0+i].valeur != None:
+                return True
         for i in range(3):
-            if self.grille[3*i].valeur == self.grille[3*i+1].valeur == self.grille[3*i+2].valeur != None:
-                gagnant = True
-            if self.grille[3*i].valeur == self.grille[3*i+3].valeur == self.grille[3*i+6].valeur != None:
-                gagnant=True
-        if self.grille[0].valeur == self.grille[4].valeur == self.grille[8].valeur != None:
-            gagnant=True
-        if self.grille[2].valeur == self.grille[4].valeur == self.grille[6].valeur != None:
-            gagnant=True
+            if self.grille[0+i].valeur == self.grille[3+i].valeur == self.grille[6+i].valeur and self.grille[0+i].valeur != None:
+                return True
+        if self.grille[0].valeur == self.grille[4].valeur == self.grille[8].valeur and self.grille[0].valeur != None:
+                return True
+        if self.grille[2].valeur == self.grille[4].valeur == self.grille[6].valeur and self.grille[2].valeur != None:
+                return True
+
+
 
     def __str__(self):
         text=""
@@ -49,48 +53,56 @@ class Grille:
                 if self.estVide(j+i):
                     a=" "
                 else:
-                    a=self.grille[j+i]
+                    a= self.grille[j+i]
                 text+=str(a)+"|"
             text+="\n"
+
         return text
 
-class Jeu:
 
+
+class Jeu :
     def __init__(self):
-        self.liste_joueurs=liste_joueurs #a def dans le jeu
-        self.plateau=Grille()
-        self.joueur_valeur=joueur_valeur #same
-        self.compteur=0
+        self.listeJoueurs =  [Joueur(input("Nom joueur 1:"),"X"),Joueur(input("Nom joueur 2:"),"O")]
+        self.plateau = Grille()
+        self.joueurActu = 1
+        self.compteur = 0
 
-    def joueurActuel(self):
-        joueur_id=self.liste_joueurs[joueur_valeur]
-        return joueur_id
 
-    def AlternerJoueurs(self,joueur_valeur):
-        if joueur_valeur==1:
-            joueur_valeur=0
-        if joueur_valeur==0:
-            joueur_valeur=1
+    def joueur_actuel(self):
+        Player= self.listeJoueurs[self.joueurActu]
+        return Player
 
-    def Round(self):
+
+    def SwitchPlayer(self):
+        if self.joueurActu == 1:
+            self.joueurActu = 0
+        elif self.joueurActu == 0:
+            self.joueurActu = 1
+
+
+    def tours(self):
         print(self.plateau)
-        case_choisie = input("Ecrit un nombre entre 1 et 9")-1
-        while self.grille.estVide(case_choisie):
+        casechoisie= input("Ecrit un nombre entre 1 et 9 ")
+        while self.plateau.estVide(int(casechoisie)-1)!=True:
             print("La case choisie est déjà prise, choisissez une autre case")
-            case_choisie = input("Ecrit un nombre entre 1 et 9")-1
-        self.SymboleJoueur(case_choisie)
+            casechoisie = input("Ecrit un nombre entre 1 et 9 ") #peut rajouter une condition pour verifier que le joueur met bien un numéro entre 1 et 9
+        self.plateau.joue(int(casechoisie)-1,self.joueur_actuel())
         self.compteur+=1
 
-    def JeuEntier(self):
-        J1=Joueur("Jean","X")
-        J2=Joueur("Bris","O")
-        liste_joueurs=[J1,J2]
-        joueur_valeur=0
-        while gagnant==None or egalite:
-            self.Round()
-        if gagnant==True:
-            print("Bravo !{joueur_valeur}, vous avez gagné !")
-        elif egalite:
-            print("Egalite !")
+    def jeu_entier(self):
+        while self.plateau.verif_victoire()!=True and self.compteur!=9:
+            self.SwitchPlayer()
+            self.tours()
+
+
+
+        if self.plateau.verif_victoire():
+            print(f"Bravo ! "+self.joueur_actuel().nom+" vous avez gagné ! ")
         else:
-            self.joueur_suivant()
+            print("Egalité")
+
+
+
+j=Jeu()
+j.jeu_entier()
