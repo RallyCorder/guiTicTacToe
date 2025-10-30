@@ -63,10 +63,17 @@ class Grille:
 
 class Jeu :
     def __init__(self):
+<<<<<<< HEAD
         self.listeJoueurs =  [Joueur(input("Nom joueur 1:"),"X"),Joueur(input("Nom joueur 2:"),"O")]
         self.plateau = Grille()
         self.joueurActu = 1
         self.compteur = 0
+=======
+        self.liste_joueurs=self.JeuEntier #a def dans le jeu
+        self.plateau=Grille()
+        self.joueur_valeur=self.JeuEntier #same
+        self.compteur=0
+>>>>>>> e4a603c61376295d06834bd0124ca364c5e21fda
 
 
     def joueur_actuel(self):
