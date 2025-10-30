@@ -2,5 +2,5 @@
 A simple Python game of TicTacToe with a gui
 
 - [X] Player class @lune3443
-- [ ] Box class @Leula0
-- [ ] Grid class @RallyCorder
+- [X] Box class @Leula0
+- [X] Grid class @RallyCorder
