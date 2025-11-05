@@ -150,3 +150,22 @@ if __name__ == "__main__":
 
 j=GUI()
 j.jeu_entier()
+
+''''
+NOW NEED TO WRITE THE WINCHECK, EITHER PATCH LEGACY CODE TO NEW OR CHANGE NEW TO MATCH COUNTING SCHEME
+LEGACY CODE:
+   
+    def verif_victoire(self):
+        for i in range(0,9,3):
+            if self.grille[0+i].valeur == self.grille[1+i].valeur == self.grille[2+i].valeur and self.grille[0+i].valeur != None:
+                return True
+        for i in range(3):
+            if self.grille[0+i].valeur == self.grille[3+i].valeur == self.grille[6+i].valeur and self.grille[0+i].valeur != None:
+                return True
+        if self.grille[0].valeur == self.grille[4].valeur == self.grille[8].valeur and self.grille[0].valeur != None:
+                return True
+        if self.grille[2].valeur == self.grille[4].valeur == self.grille[6].valeur and self.grille[2].valeur != None:
+                return True
+
+
+'''''
