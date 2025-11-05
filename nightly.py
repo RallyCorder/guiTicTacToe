@@ -117,7 +117,7 @@ class GUI(QtWidgets.QWidget):
     def input8(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
-        self.button8setText(str(casechoisie))
+        self.button8.setText(str(casechoisie))
         self.SwitchPlayer()
 
     def input9(self):
