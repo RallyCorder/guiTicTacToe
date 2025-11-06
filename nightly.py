@@ -32,40 +32,76 @@ class GUI(QtWidgets.QWidget):
         self.compteur = 0
         self.casechoisie = None
 
-        self.button1 = QtWidgets.QPushButton(None)
-        self.button2 = QtWidgets.QPushButton(None)
-        self.button3 = QtWidgets.QPushButton(None)
-        self.button4 = QtWidgets.QPushButton(None)
-        self.button5 = QtWidgets.QPushButton(None)
-        self.button6 = QtWidgets.QPushButton(None)
-        self.button7 = QtWidgets.QPushButton(None)
-        self.button8 = QtWidgets.QPushButton(None)
-        self.button9 = QtWidgets.QPushButton(None)
+        for i in range(1,10):
+            setattr(self, "button"+str(i), QtWidgets.QPushButton(None))
         self.text = QtWidgets.QLabel ("Winner?")
 
         self.layout = QtWidgets.QGridLayout(self)
-        self.layout.addWidget(self.button1, 0, 0)
-        self.layout.addWidget(self.button2, 0, 1)
-        self.layout.addWidget(self.button3, 0, 2)
-        self.layout.addWidget(self.button4, 1, 0)
-        self.layout.addWidget(self.button5, 1, 1)
-        self.layout.addWidget(self.button6, 1, 2)
-        self.layout.addWidget(self.button7, 2, 0)
-        self.layout.addWidget(self.button8, 2, 1)
-        self.layout.addWidget(self.button9, 2, 2)
+
+        nb = 0
+        for i in range(3):
+            for j in range(3):
+                nb += 1
+                self.layout.addWidget(getattr(self, "button"+str(nb)), i, j)
+
         self.layout.addWidget(self.text)
 
-        self.button1.clicked.connect(self.input1)
-        self.button2.clicked.connect(self.input2)
-        self.button3.clicked.connect(self.input3)
-        self.button4.clicked.connect(self.input4)
-        self.button5.clicked.connect(self.input5)
-        self.button6.clicked.connect(self.input6)
-        self.button7.clicked.connect(self.input7)
-        self.button8.clicked.connect(self.input8)
-        self.button9.clicked.connect(self.input9)
+        for i in range(1,10):
+            getattr(self, "button"+str(i)).clicked.connect(getattr(self, "user_input"+str(i)))
 
+    def user_input1(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button1.setText(str(casechoisie))
+        self.SwitchPlayer()
 
+    def user_input2(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button2.setText(str(casechoisie))
+        self.SwitchPlayer()
+
+    def user_input3(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button3.setText(str(casechoisie))
+        self.SwitchPlayer()
+
+    def user_input4(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button4.setText(str(casechoisie))
+        self.SwitchPlayer()
+
+    def user_input5(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button5.setText(str(casechoisie))
+        self.SwitchPlayer()
+
+    def user_input6(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button6.setText(str(casechoisie))
+        self.SwitchPlayer()
+
+    def user_input7(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button7.setText(str(casechoisie))
+        self.SwitchPlayer()
+
+    def user_input8(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button8.setText(str(casechoisie))
+        self.SwitchPlayer()
+
+    def user_input9(self):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        self.button9.setText(str(casechoisie))
+        self.SwitchPlayer()
 
     def SwitchPlayer(self):
         if self.joueurActu == 1:
@@ -74,72 +110,54 @@ class GUI(QtWidgets.QWidget):
             self.joueurActu = 1
 
     @QtCore.Slot()
-    def input1(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button1.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
 
-    def input2(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button2.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
-
-    def input3(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button3.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
-
-    def input4(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button4.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
-
-    def input5(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button5.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
-
-    def input6(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button6.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
-
-    def input7(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button7.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
-
-    def input8(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button8.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
-
-    def input9(self):
-        casechoisie = self.joueur_actuel()
-        self.compteur+=1
-        self.button9.setText(str(casechoisie))
-        self.SwitchPlayer()
-        self.Wincheck()
 
     def Wincheck(self):
-        if self.button1.text() == self.button2.text() == self.button3.text() and self.button1.text() != None:
-            self.text.setText("WINNER!")
+        
+        if self.button1.text() == self.button2.text() == self.button3.text():
+            if all == None:
+                pass
+            else:
+                self.text.setText("WINNER!")
+        if self.button4.text() == self.button5.text() == self.button6.text():
+            if all == None:
+                pass
+            else:
+                self.text.setText("WINNER!")
+        if self.button7.text() == self.button8.text() == self.button9.text():
+            if all == None:
+                pass
+            else:
+                self.text.setText("WINNER!")
+
+        if self.button1.text() == self.button4.text() == self.button7.text():
+            if all == None:
+                pass
+            else:
+                self.text.setText("WINNER!")
+        if self.button2.text() == self.button5.text() == self.button8.text():
+            if all == None:
+                pass
+            else:
+                self.text.setText("WINNER!")
+        if self.button3.text() == self.button6.text() == self.button9.text():
+            if all == None:
+                pass
+            else:
+                self.text.setText("WINNER!")
+
+        if self.button1.text() == self.button5.text() == self.button9.text():
+            if all == None:
+                pass
+            else:
+                self.text.setText("WINNER!")
+        if self.button3.text() == self.button5.text() == self.button7.text():
+            if all == None:
+                pass
+            else:
+                self.text.setText("WINNER!")
+        else:
+            pass
 
     def joueur_actuel(self):
         Player= self.listeJoueurs[self.joueurActu]
@@ -165,6 +183,15 @@ if __name__ == "__main__":
 
 j=GUI()
 j.jeu_entier()
+
+''' attempt at optimising the user_input func, failure due to line 50 getattr(self, "user_input"+str(i)), 'GUI' object has no attribute 'user_input1'
+    def user_input(self, i):
+        casechoisie = self.joueur_actuel()
+        self.compteur+=1
+        getattr(self,"button"+str(i)).setText(str(casechoisie))
+        self.SwitchPlayer()
+        self.Wincheck()
+'''
 
 ''''
 NOW NEED TO WRITE THE WINCHECK, EITHER PATCH LEGACY CODE TO NEW OR CHANGE NEW TO MATCH COUNTING SCHEME
