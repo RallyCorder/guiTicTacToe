@@ -51,54 +51,63 @@ class GUI(QtWidgets.QWidget):
         self.compteur+=1
         self.button1.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def user_input2(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
         self.button2.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def user_input3(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
         self.button3.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def user_input4(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
         self.button4.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def user_input5(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
         self.button5.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def user_input6(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
         self.button6.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def user_input7(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
         self.button7.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def user_input8(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
         self.button8.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def user_input9(self):
         casechoisie = self.joueur_actuel()
         self.compteur+=1
         self.button9.setText(str(casechoisie))
         self.SwitchPlayer()
+        self.Wincheck()
 
     def SwitchPlayer(self):
         if self.joueurActu == 1:
@@ -110,51 +119,28 @@ class GUI(QtWidgets.QWidget):
 
 
     def Wincheck(self):
-        
-        if self.button1.text() == self.button2.text() == self.button3.text():
-            if all == None:
-                pass
-            else:
-                self.text.setText("WINNER!")
-        if self.button4.text() == self.button5.text() == self.button6.text():
-            if all == None:
-                pass
-            else:
-                self.text.setText("WINNER!")
-        if self.button7.text() == self.button8.text() == self.button9.text():
-            if all == None:
-                pass
-            else:
-                self.text.setText("WINNER!")
-
-        if self.button1.text() == self.button4.text() == self.button7.text():
-            if all == None:
-                pass
-            else:
-                self.text.setText("WINNER!")
-        if self.button2.text() == self.button5.text() == self.button8.text():
-            if all == None:
-                pass
-            else:
-                self.text.setText("WINNER!")
-        if self.button3.text() == self.button6.text() == self.button9.text():
-            if all == None:
-                pass
-            else:
-                self.text.setText("WINNER!")
-
-        if self.button1.text() == self.button5.text() == self.button9.text():
-            if all == None:
-                pass
-            else:
-                self.text.setText("WINNER!")
-        if self.button3.text() == self.button5.text() == self.button7.text():
-            if all == None:
-                pass
-            else:
-                self.text.setText("WINNER!")
-        else:
-            pass
+        for i in range(1,3):
+            if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+1)).text() == getattr(self,"button"+str(i+2)).text() and getattr(self,"button"+str(i)).text():
+                if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+1)).text() == getattr(self,"button"+str(i+2)).text() and getattr(self,"button"+str(i)).text() == None:
+                    pass
+                else:
+                    self.text.setText("WINNER!")
+            if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+3)).text() == getattr(self,"button"+str(i+6)).text() and getattr(self,"button"+str(i)).text():
+                if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+3)).text() == getattr(self,"button"+str(i+6)).text() and getattr(self,"button"+str(i)).text() == None:
+                    pass
+                else:
+                    self.text.setText("WINNER!")
+            if self.button1.text() == self.button5.text() == self.button9.text() and getattr(self,"button"+str(i)).text():
+                if self.button1.text() == self.button5.text() == self.button9.text() and getattr(self,"button"+str(i)).text():
+                    pass
+                else:
+                    self.text.setText("WINNER!")
+            if self.button3.text() == self.button5.text() == self.button7.text() and getattr(self,"button"+str(i)).text():
+                if self.button3.text() == self.button5.text() == self.button7.text() and getattr(self,"button"+str(i)).text():
+                    pass
+                else:
+                    self.text.setText("WINNER!")
+            
 
     def joueur_actuel(self):
         Player= self.listeJoueurs[self.joueurActu]
