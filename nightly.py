@@ -26,28 +26,25 @@ class GUI(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         
-        self.hello = ["X","O"]
-        self.listeJoueurs =  [Joueur(input("Nom joueur 1:"),"X"),Joueur(input("Nom joueur 2:"),"O")]
+        self.listeJoueurs =  [Joueur(input("Player X is called: "),"X"),Joueur(input("Player O is called: "),"O")]
         self.joueurActu = 1
         self.compteur = 0
         self.casechoisie = None
 
         for i in range(1,10):
-            setattr(self, "button"+str(i), QtWidgets.QPushButton(None))
+            setattr(self,"button"+str(i),QtWidgets.QPushButton(None))
         self.text = QtWidgets.QLabel ("Winner?")
-
+        
         self.layout = QtWidgets.QGridLayout(self)
-
         nb = 0
         for i in range(3):
             for j in range(3):
-                nb += 1
-                self.layout.addWidget(getattr(self, "button"+str(nb)), i, j)
-
+                nb+=1
+                self.layout.addWidget(getattr(self, "button"+str(nb)),i,j)
         self.layout.addWidget(self.text)
 
         for i in range(1,10):
-            getattr(self, "button"+str(i)).clicked.connect(getattr(self, "user_input"+str(i)))
+            getattr(self, "button"+str(i)).clicked.connect(getattr(self,"user_input"+str(i)))
 
     def user_input1(self):
         casechoisie = self.joueur_actuel()
