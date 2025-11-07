@@ -2,15 +2,15 @@ import sys
 import random
 from PySide6 import QtCore, QtWidgets, QtGui
 
-class Joueur :
-    def __init__(self, nom, symbole):
-        self.nom = nom
-        self.symbole = symbole
+class Player:
+    def __init__(self,nom,symbole):
+        self.nom=nom
+        self.symbole=symbole
 
     def __str__(self):
-        return self.nom + ": "+ self.symbole
+        return self.nom+ ": "+self.symbole
 
-class Case:
+class Box:
 
     def __init__(self,position,valeur):
         self.position=position
@@ -26,10 +26,10 @@ class GUI(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         
-        self.listeJoueurs =  [Joueur(input("Player X is called: "),"X"),Joueur(input("Player O is called: "),"O")]
-        self.joueurActu = 1
-        self.counter = 0
-        self.casechoisie = None
+        self.listeJoueurs=[Player(input("Player Ж is called: "),"Ж"),Player(input("Player 𝛀 is called: "),"𝛀")]
+        self.joueurActu=random.randint(0,1)
+        self.counter=0
+        self.chosen_box=None
         for i in range(1,10):
             setattr(self, "dot"+str(i),0)
 
@@ -55,10 +55,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot1==1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button1.setText(str(casechoisie))
+            self.button1.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot1+=1
@@ -67,10 +67,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot2==1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button2.setText(str(casechoisie))
+            self.button2.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot2+=1
@@ -79,10 +79,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot3==1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button3.setText(str(casechoisie))
+            self.button3.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot3+=1
@@ -91,10 +91,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot4==1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button4.setText(str(casechoisie))
+            self.button4.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot4+=1
@@ -103,10 +103,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot5 == 1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button5.setText(str(casechoisie))
+            self.button5.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot5+=1
@@ -115,10 +115,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot6 == 1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button6.setText(str(casechoisie))
+            self.button6.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot6+=1
@@ -127,10 +127,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot7 == 1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button7.setText(str(casechoisie))
+            self.button7.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot7+=1
@@ -139,10 +139,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot8 == 1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button8.setText(str(casechoisie))
+            self.button8.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot8+=1
@@ -151,10 +151,10 @@ class GUI(QtWidgets.QWidget):
         if self.dot9 == 1:
             pass
         else:
-            casechoisie = self.current_player()
+            chosen_box = self.current_player()
             self.counter+=1
             self.countertext.setText(str(self.counter))
-            self.button9.setText(str(casechoisie))
+            self.button9.setText(str(chosen_box))
             self.SwitchPlayer()
             self.Wincheck()
             self.dot9+=1
@@ -165,36 +165,38 @@ class GUI(QtWidgets.QWidget):
         elif self.joueurActu == 0:
             self.joueurActu = 1
 
-    @QtCore.Slot()
-
 
     def Wincheck(self):
-        for i in range(1,3):
+        for i in range(1,8):
             if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+1)).text() == getattr(self,"button"+str(i+2)).text() and getattr(self,"button"+str(i)).text():
                 if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+1)).text() == getattr(self,"button"+str(i+2)).text() and getattr(self,"button"+str(i)).text() == None:
-                    pass
+                    if getattr(self,"button"+str(i+1%2==0)):
+                        pass
                 else:
                     self.wintext.setText(str(getattr(self,"button"+str(i)).text())+" is the winner!")
+        
+        for i in range(1,4):
             if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+3)).text() == getattr(self,"button"+str(i+6)).text() and getattr(self,"button"+str(i)).text():
-                if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+3)).text() == getattr(self,"button"+str(i+6)).text() and getattr(self,"button"+str(i)).text() == None:
-                    pass
-                else:
-                    self.wintext.setText(str(getattr(self,"button"+str(i)).text())+" is the winner!")
-            if self.button1.text() == self.button5.text() == self.button9.text() and getattr(self,"button"+str(i)).text():
-                if self.button1.text() == self.button5.text() == self.button9.text() and getattr(self,"button"+str(i)).text():
+                    if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+3)).text() == getattr(self,"button"+str(i+6)).text() and getattr(self,"button"+str(i)).text() == None:
+                        pass
+                    else:
+                        self.wintext.setText(str(getattr(self,"button"+str(i)).text())+" is the winner!")
+
+            if self.button1.text() == self.button5.text() == self.button9.text() and self.button1.text():
+                if self.button1.text() == self.button5.text() == self.button9.text() and self.button1.text():
                     pass
                 else:
                     self.wintext.setText(str(self.button1.text())+" is the winner!")
-            if self.button3.text() == self.button5.text() == self.button7.text() and getattr(self,"button"+str(i)).text():
-                if self.button3.text() == self.button5.text() == self.button7.text() and getattr(self,"button"+str(i)).text():
-                    pass
-                else:
-                    self.wintext.setText(str(self.button3.text())+" is the winner!")
+        if self.button3.text() == self.button5.text() == self.button7.text() and self.button3.text():
+            if self.button3.text() == self.button5.text() == self.button7.text() and self.button3.text():
+                pass
+            else:
+                self.wintext.setText(str(self.button3.text())+" is the winner!")
             
 
     def current_player(self):
-        Player= self.listeJoueurs[self.joueurActu]
-        return Player
+        Player_current= self.listeJoueurs[self.joueurActu]
+        return Player_current
 
     def jeu_entier(self):
         while self.plateau.verif_victoire()!=True and self.counter!=9:
@@ -219,9 +221,9 @@ j.jeu_entier()
 
 ''' attempt at optimising the user_input func, failure due to line 50 getattr(self, "user_input"+str(i)), 'GUI' object has no attribute 'user_input1'
     def user_input(self, i):
-        casechoisie = self.current_player()
+        chosen_box = self.current_player()
         self.compteur+=1
-        getattr(self,"button"+str(i)).setText(str(casechoisie))
+        getattr(self,"button"+str(i)).setText(str(chosen_box))
         self.SwitchPlayer()
         self.Wincheck()
 '''
