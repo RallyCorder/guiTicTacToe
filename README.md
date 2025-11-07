@@ -1,6 +1,4 @@
 # guiTicTacToe
-A simple Python game of TicTacToe with a gui
+A simple Python game of TicTacToe with a GUI, using Qt6
 
-- [X] Player class @lune3443
-- [X] Box class @Leula0
-- [X] Grid class @RallyCorder
+*The PDF was instructions for the legacy version of the game, containing certain restrictions*
