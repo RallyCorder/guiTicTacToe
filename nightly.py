@@ -165,13 +165,11 @@ class GUI(QtWidgets.QWidget):
         elif self.joueurActu == 0:
             self.joueurActu = 1
 
-
     def Wincheck(self):
-        for i in range(1,8):
+        for i in range(1,8,3):
             if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+1)).text() == getattr(self,"button"+str(i+2)).text() and getattr(self,"button"+str(i)).text():
                 if getattr(self,"button"+str(i)).text() == getattr(self,"button"+str(i+1)).text() == getattr(self,"button"+str(i+2)).text() and getattr(self,"button"+str(i)).text() == None:
-                    if getattr(self,"button"+str(i+1%2==0)):
-                        pass
+                    pass
                 else:
                     self.wintext.setText(str(getattr(self,"button"+str(i)).text())+" is the winner!")
         
@@ -183,17 +181,16 @@ class GUI(QtWidgets.QWidget):
                         self.wintext.setText(str(getattr(self,"button"+str(i)).text())+" is the winner!")
 
             if self.button1.text() == self.button5.text() == self.button9.text() and self.button1.text():
-                if self.button1.text() == self.button5.text() == self.button9.text() and self.button1.text():
+                if self.button1.text() == self.button5.text() == self.button9.text() and self.button1.text() == None:
                     pass
                 else:
                     self.wintext.setText(str(self.button1.text())+" is the winner!")
         if self.button3.text() == self.button5.text() == self.button7.text() and self.button3.text():
-            if self.button3.text() == self.button5.text() == self.button7.text() and self.button3.text():
+            if self.button3.text() == self.button5.text() == self.button7.text() and self.button3.text() == None:
                 pass
             else:
                 self.wintext.setText(str(self.button3.text())+" is the winner!")
             
-
     def current_player(self):
         Player_current= self.listeJoueurs[self.joueurActu]
         return Player_current
