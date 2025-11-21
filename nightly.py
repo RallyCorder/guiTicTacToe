@@ -13,14 +13,14 @@ class Player:
 class Gameloop:
 
     def __init__(self):
-        self.listeJoueurs=[Player(input("Player Ж is called: "),"Ж"),Player(input("Player 𝛀 is called: "),"𝛀")]
-        self.joueurActu=random.randint(0,1)
+        self.playerlist=[Player(input("Player Ж is called: "),"Ж"),Player(input("Player 𝛀 is called: "),"𝛀")]
+        self.current_player=random.randint(0,1)
         self.chosen_box=None
         for i in range(1,10):
-            setattr(self,"dot"+str(i),0)
-        
+            setattr(self,"dot"+str(i),0)  
 
     def user_input1(self):
+            chosen_box = self.current_player()
             GUI.counter+=1
             GUI.countertext.setText(str(self.counter))
             GUI.button1.setText(str(self.current_player))
@@ -134,17 +134,17 @@ class Gameloop:
             self.dot9+=1
 
     def SwitchPlayer(self):
-        if self.joueurActu == 1:
-            self.joueurActu = 0
-        elif self.joueurActu == 0:
-            self.joueurActu = 1  
+        if self.current_player == 1:
+            self.current_player = 0
+        elif self.current_player == 0:
+            self.current_player = 1  
 
     def current_player(self):
-        Player_current= self.listeJoueurs[self.joueurActu]
+        Player_current= self.playerlist[self.current_player]
         return Player_current      
 
     def Game(self):
-        self.listeJoueurs
+        self.playerlist
 
 class GUI(QtWidgets.QWidget):
     def __init__(self):
