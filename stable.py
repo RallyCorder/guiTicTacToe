@@ -3,24 +3,12 @@ import random
 from PySide6 import QtCore, QtWidgets, QtGui
 
 class Player:
-    def __init__(self,nom,symbole):
-        self.nom=nom
-        self.symbole=symbole
+    def __init__(self,username,symbol):
+        self.username=username
+        self.symbol=symbol
 
     def __str__(self):
-        return self.nom+ ": "+self.symbole
-
-class Box:
-
-    def __init__(self,position,valeur):
-        self.position=position
-        self.valeur=valeur
-
-    def __str__(self):
-        if self.valeur!= None:
-            return self.valeur
-        else:
-            return str(self.position)
+        return self.username+ ": "+self.symbol
 
 class GUI(QtWidgets.QWidget):
     def __init__(self):
@@ -195,15 +183,6 @@ class GUI(QtWidgets.QWidget):
         Player_current= self.listeJoueurs[self.joueurActu]
         return Player_current
 
-    def jeu_entier(self):
-        while self.plateau.verif_victoire()!=True and self.counter!=9:
-            self.SwitchPlayer()
-            self.tours()
-        if self.plateau.verif_victoire():
-            print(f"Bravo ! "+self.current_player().nom+" vous avez gagné ! ")
-        else:
-            print("Egalité")
-
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
 
@@ -214,7 +193,6 @@ if __name__ == "__main__":
     sys.exit(app.exec())
 
 j=GUI()
-j.jeu_entier()
 
 ''' attempt at optimising the user_input func, failure due to line 50 getattr(self, "user_input"+str(i)), 'GUI' object has no attribute 'user_input1'
     def user_input(self, i):
