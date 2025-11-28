@@ -4,15 +4,14 @@ from PySide6 import QtCore, QtWidgets, QtGui
 from PySide6.QtCore import Qt, QSize
 
 class Player:
-    def __init__(self,username,symbol):
-        self.username=username
+    def __init__(self,symbol):
         self.symbol=symbol
 
     def __str__(self):
         return self.symbol
 
-player1=Player(input("PLAYER Ж IS CALLED: "),"Ж")
-player2=Player(input("PLAYER 𝛀 IS CALLED: "),"𝛀")
+player1=Player("Ж")
+player2=Player("𝛀")
 
 class Hideogame:
 
@@ -20,6 +19,8 @@ class Hideogame:
         self.playerlist=[player1,player2]
         self.current_player=current_player
         self.counter=0
+        self.scoreP1=0
+        self.scoreP2=0
 
     def user_input1(self):
         gameloop_instance.counter+=1
@@ -154,38 +155,101 @@ class Hideogame:
                 if getattr(widget,"button"+str(i)).text() == getattr(widget,"button"+str(i+1)).text() == getattr(widget,"button"+str(i+2)).text() and getattr(widget,"button"+str(i)).text() == None:
                     pass
                 else:
-                    widget.wintext.setText(str(getattr(widget,"button"+str(i)).text())+" WINS")
+                    self.player2nametext=widget.player2name.toPlainText()
+                    self.player1nametext=widget.player1name.toPlainText()
                     widget.reseter.setVisible(True)
                     widget.countertext.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     widget.turnsymbol.setVisible(False)
-        
+                    if getattr(widget,"button"+str(i)).text() == player1.symbol:
+                        gameloop_instance.scoreP1+=1
+                    if getattr(widget,"button"+str(i)).text() == player2.symbol:
+                        gameloop_instance.scoreP2+=1
+                    widget.scoreshow.setText(str(gameloop_instance.scoreP1)+" - "+str(gameloop_instance.scoreP2))
+                    if getattr(widget,"button"+str(i)).text() == player1.symbol and self.player1nametext != None:
+                        widget.wintext.setText(str(self.player1nametext)+" WINS")
+                        if widget.wintext.text() == " WINS":
+                            widget.wintext.setText("Ж WINS")
+                    if getattr(widget,"button"+str(i)).text() == player2.symbol and self.player2nametext != None:
+                        widget.wintext.setText(str(self.player2nametext)+" WINS")  
+                        if widget.wintext.text() == " WINS":
+                            widget.wintext.setText("𝛀 WINS")
+                        
         for i in range(1,4):
             if getattr(widget,"button"+str(i)).text() == getattr(widget,"button"+str(i+3)).text() == getattr(widget,"button"+str(i+6)).text() and getattr(widget,"button"+str(i)).text():
                     if getattr(widget,"button"+str(i)).text() == getattr(widget,"button"+str(i+3)).text() == getattr(widget,"button"+str(i+6)).text() and getattr(widget,"button"+str(i)).text() == None:
                         pass
                     else:
-                        widget.wintext.setText(str(getattr(widget,"button"+str(i)).text())+" WINS")
+                        self.player2nametext=widget.player2name.toPlainText()
+                        self.player1nametext=widget.player1name.toPlainText()
                         widget.reseter.setVisible(True)
                         widget.countertext.setAlignment(Qt.AlignmentFlag.AlignCenter)
                         widget.turnsymbol.setVisible(False)
+                        if getattr(widget,"button"+str(i)).text() == player1.symbol:
+                            gameloop_instance.scoreP1+=1
+                        if getattr(widget,"button"+str(i)).text() == player2.symbol:
+                            gameloop_instance.scoreP2+=1
+                        widget.scoreshow.setText(str(gameloop_instance.scoreP1)+" - "+str(gameloop_instance.scoreP2))
+                        if getattr(widget,"button"+str(i)).text() == player1.symbol and self.player1nametext != None:
+                            widget.wintext.setText(str(self.player1nametext)+" WINS")
+                            if widget.wintext.text() == " WINS":
+                                widget.wintext.setText("Ж WINS")
+                        elif getattr(widget,"button"+str(i)).text() == player2.symbol and self.player2nametext != None:
+                            widget.wintext.setText(str(self.player2nametext)+" WINS")  
+                            if widget.wintext.text() == " WINS":
+                                widget.wintext.setText("𝛀 WINS")
 
             if widget.button1.text() == widget.button5.text() == widget.button9.text() and widget.button1.text():
                 if widget.button1.text() == widget.button5.text() == widget.button9.text() and widget.button1.text() == None:
                     pass
                 else:
-                    widget.wintext.setText(str(widget.button1.text())+" WINS")
+                    self.player2nametext=widget.player2name.toPlainText()
+                    self.player1nametext=widget.player1name.toPlainText()
                     widget.reseter.setVisible(True)
                     widget.countertext.setAlignment(Qt.AlignmentFlag.AlignCenter)
                     widget.turnsymbol.setVisible(False)
+                    if getattr(widget,"button"+str(i)).text() == player1.symbol:
+                        gameloop_instance.scoreP1+=1
+                    if getattr(widget,"button"+str(i)).text() == player2.symbol:
+                        gameloop_instance.scoreP2+=1
+                    widget.scoreshow.setText(str(gameloop_instance.scoreP1)+" - "+str(gameloop_instance.scoreP2))
+                    if getattr(widget,"button"+str(i)).text() == player1.symbol and self.player1nametext != None:
+                        widget.wintext.setText(str(self.player1nametext)+" WINS")
+                        if widget.wintext.text() == " WINS":
+                            widget.wintext.setText("Ж WINS")
+                    elif getattr(widget,"button"+str(i)).text() == player2.symbol and self.player2nametext != None:
+                        widget.wintext.setText(str(self.player2nametext)+" WINS")  
+                        if widget.wintext.text() == " WINS":
+                            widget.wintext.setText("𝛀 WINS") 
+                        
 
         if widget.button3.text() == widget.button5.text() == widget.button7.text() and widget.button3.text():
             if widget.button3.text() == widget.button5.text() == widget.button7.text() and widget.button3.text() == None:
                 pass
             else:
-                widget.wintext.setText(str(widget.button3.text())+" WINS")
+                self.player2nametext=widget.player2name.toPlainText()
+                self.player1nametext=widget.player1name.toPlainText()
                 widget.reseter.setVisible(True)
                 widget.countertext.setAlignment(Qt.AlignmentFlag.AlignCenter)
                 widget.turnsymbol.setVisible(False)
+                if getattr(widget,"button"+str(i)).text() == player1.symbol:
+                    gameloop_instance.scoreP1+=1
+                if getattr(widget,"button"+str(i)).text() == player2.symbol:
+                    gameloop_instance.scoreP2+=1
+                widget.scoreshow.setText(str(gameloop_instance.scoreP1)+" - "+str(gameloop_instance.scoreP2))
+                if getattr(widget,"button"+str(i)).text() == player1.symbol and self.player1nametext != None:
+                    widget.wintext.setText(str(self.player1nametext)+" WINS")
+                    if widget.wintext.text() == " WINS":
+                        widget.wintext.setText("Ж WINS")
+                elif getattr(widget,"button"+str(i)).text() == player2.symbol and self.player2nametext != None:
+                    widget.wintext.setText(str(self.player2nametext)+" WINS")  
+                    if widget.wintext.text() == " WINS":
+                        widget.wintext.setText("𝛀 WINS")
+
+        if gameloop_instance.counter == 9:
+            widget.reseter.setVisible(True)
+            widget.countertext.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            widget.turnsymbol.setVisible(False)
+
 
     def Reset(self):
         gameloop_instance.current_player==random.choice(seq=(player1,player2))
@@ -202,6 +266,7 @@ class Hideogame:
 gameloop_instance=Hideogame(random.choice(seq=(player1,player2)))
 
 class GUI(QtWidgets.QWidget):
+
     def __init__(self):
         super().__init__()
         
@@ -238,6 +303,24 @@ class GUI(QtWidgets.QWidget):
         self.turnsymbol=QtWidgets.QLabel(str(gameloop_instance.current_player))
         self.turnsymbol.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.layout.addWidget(self.turnsymbol,9,4)
+
+        self.player1name=QtWidgets.QTextEdit()
+        self.player1name.setPlaceholderText("Player Ж")
+        self.layout.addWidget(self.player1name,0,2)
+        self.player1name.setMaximumSize(200,30)
+        self.player1name.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.player1name.setTabChangesFocus(True)
+
+        self.player2name=QtWidgets.QTextEdit()
+        self.player2name.setPlaceholderText("Player 𝛀")
+        self.layout.addWidget(self.player2name,0,4)
+        self.player2name.setMaximumSize(200,30)
+        self.player2name.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.player2name.setTabChangesFocus(True)
+        
+        self.scoreshow=QtWidgets.QLabel(str(gameloop_instance.scoreP1) + " - " + str(gameloop_instance.scoreP2))
+        self.layout.addWidget(self.scoreshow,0,3)
+        self.scoreshow.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
