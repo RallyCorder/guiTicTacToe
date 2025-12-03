@@ -2,6 +2,9 @@ import sys
 import random
 from PySide6 import QtCore, QtWidgets, QtGui
 from PySide6.QtCore import Qt, QSize
+import csv
+
+leaderboardfile='leaderboard.csv'
 
 class Player:
     def __init__(self,symbol):
@@ -12,6 +15,33 @@ class Player:
 
 player1=Player("Ж")
 player2=Player("𝛀")
+
+class Leaderboard():
+    def import_csv(leaderboardfile):
+        tab=[]
+        with open(leaderboardfile) as csvfile:
+            reader=csv.DictReader(csvfile)
+            for row in reader:
+                tab.append(row)
+        return tab
+
+    def add_to_csv(user):
+        actuator=False
+        for dico in leaderboard:
+            if dico["Username"]==user:
+                dico["Victories"]=int(dico["Victories"])+1
+                actuator=True
+        if not actuator:
+            leaderboard.append({'Username':user,'Victories':1})
+
+    def export_csv(file,table):
+        with open(file, 'w', newline='') as csvfile:
+            fields=table[0].keys()
+            writer=csv.DictWriter(csvfile, fields)
+            writer.writeheader()
+            writer.writerows(table)
+
+leaderboard = Leaderboard.import_csv(leaderboardfile)
 
 class Hideogame:
 
@@ -169,10 +199,20 @@ class Hideogame:
                         widget.wintext.setText(str(self.player1nametext)+" WINS")
                         if widget.wintext.text() == " WINS":
                             widget.wintext.setText("Ж WINS")
+                            Leaderboard.add_to_csv("Ж")
+                            Leaderboard.export_csv(leaderboardfile, leaderboard)
+                        else:
+                            Leaderboard.add_to_csv(str(self.player1nametext))
+                            Leaderboard.export_csv(leaderboardfile, leaderboard)
                     if getattr(widget,"button"+str(i)).text() == player2.symbol and self.player2nametext != None:
                         widget.wintext.setText(str(self.player2nametext)+" WINS")  
                         if widget.wintext.text() == " WINS":
                             widget.wintext.setText("𝛀 WINS")
+                            Leaderboard.add_to_csv("𝛀")
+                            Leaderboard.export_csv(leaderboardfile, leaderboard)
+                        else:
+                            Leaderboard.add_to_csv(str(self.player2nametext))
+                            Leaderboard.export_csv(leaderboardfile, leaderboard)
                         
         for i in range(1,4):
             if getattr(widget,"button"+str(i)).text() == getattr(widget,"button"+str(i+3)).text() == getattr(widget,"button"+str(i+6)).text() and getattr(widget,"button"+str(i)).text():
@@ -193,10 +233,20 @@ class Hideogame:
                             widget.wintext.setText(str(self.player1nametext)+" WINS")
                             if widget.wintext.text() == " WINS":
                                 widget.wintext.setText("Ж WINS")
+                                Leaderboard.add_to_csv("Ж")
+                                Leaderboard.export_csv(leaderboardfile, leaderboard)
+                            else:
+                                Leaderboard.add_to_csv(str(self.player1nametext))
+                                Leaderboard.export_csv(leaderboardfile, leaderboard)
                         elif getattr(widget,"button"+str(i)).text() == player2.symbol and self.player2nametext != None:
-                            widget.wintext.setText(str(self.player2nametext)+" WINS")  
+                            widget.wintext.setText(str(self.player2nametext)+" WINS")
                             if widget.wintext.text() == " WINS":
                                 widget.wintext.setText("𝛀 WINS")
+                                Leaderboard.add_to_csv("𝛀")
+                                Leaderboard.export_csv(leaderboardfile, leaderboard)
+                            else:
+                                Leaderboard.add_to_csv(str(self.player2nametext))
+                                Leaderboard.export_csv(leaderboardfile, leaderboard)
 
             if widget.button1.text() == widget.button5.text() == widget.button9.text() and widget.button1.text():
                 if widget.button1.text() == widget.button5.text() == widget.button9.text() and widget.button1.text() == None:
@@ -216,10 +266,20 @@ class Hideogame:
                         widget.wintext.setText(str(self.player1nametext)+" WINS")
                         if widget.wintext.text() == " WINS":
                             widget.wintext.setText("Ж WINS")
+                            Leaderboard.add_to_csv("Ж")
+                            Leaderboard.export_csv(leaderboardfile, leaderboard)
+                        else:
+                            Leaderboard.add_to_csv(str(self.player1nametext))
+                            Leaderboard.export_csv(leaderboardfile, leaderboard)
                     elif getattr(widget,"button"+str(i)).text() == player2.symbol and self.player2nametext != None:
                         widget.wintext.setText(str(self.player2nametext)+" WINS")  
                         if widget.wintext.text() == " WINS":
-                            widget.wintext.setText("𝛀 WINS") 
+                            widget.wintext.setText("𝛀 WINS")
+                            Leaderboard.add_to_csv("𝛀")
+                            Leaderboard.export_csv(leaderboardfile, leaderboard) 
+                        else:
+                            Leaderboard.add_to_csv(str(self.player2nametext))
+                            Leaderboard.export_csv(leaderboardfile, leaderboard)
                         
 
         if widget.button3.text() == widget.button5.text() == widget.button7.text() and widget.button3.text():
@@ -240,10 +300,20 @@ class Hideogame:
                     widget.wintext.setText(str(self.player1nametext)+" WINS")
                     if widget.wintext.text() == " WINS":
                         widget.wintext.setText("Ж WINS")
+                        Leaderboard.add_to_csv("Ж")
+                        Leaderboard.export_csv(leaderboardfile, leaderboard)
+                    else:
+                        Leaderboard.add_to_csv(str(self.player1nametext))
+                        Leaderboard.export_csv(leaderboardfile, leaderboard)
                 elif getattr(widget,"button"+str(i)).text() == player2.symbol and self.player2nametext != None:
                     widget.wintext.setText(str(self.player2nametext)+" WINS")  
                     if widget.wintext.text() == " WINS":
                         widget.wintext.setText("𝛀 WINS")
+                        Leaderboard.add_to_csv("𝛀")
+                        Leaderboard.export_csv(leaderboardfile, leaderboard) 
+                    else:
+                        Leaderboard.add_to_csv(str(self.player2nametext))
+                        Leaderboard.export_csv(leaderboardfile, leaderboard)
 
         if gameloop_instance.counter == 9:
             widget.reseter.setVisible(True)
