@@ -394,6 +394,7 @@ class GUI(QtWidgets.QWidget):
 
 app=QtWidgets.QApplication([])
 widget=GUI()
-widget.resize(100,100)
+widget.setMaximumSize(650,700)
+widget.setMinimumSize(650,700)
 widget.show()
 sys.exit(app.exec())
